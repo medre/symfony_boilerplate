@@ -1,0 +1,53 @@
+{% extends 'secure.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('login') }}
+{% endblock %}
+
+{% block body %}
+	<div class="login-container bg-white p-5 rounded-lg shadow-lg">
+
+		{% for flash_error in app.flashes('verify_email_error') %}
+			<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+		{% endfor %}
+
+		<div class="text-center mb-5">
+			<h1 class="display-4 mb-3">{{ app_name }}</h1>
+			<p class="text-muted">Please register for an account</p>
+		</div>
+
+		{{ form_errors(registrationForm) }}
+
+		{{ form_start(registrationForm, {'class': 'login-form'}) }}
+
+		<div class="form-group mb-4">
+			{{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+		</div>
+
+		<div class="form-group mb-4">
+			{{ form_row(registrationForm.plainPassword, {
+                label: 'Password',
+                'attr': {'class': 'form-control'}
+            }) }}
+		</div>
+
+		<div class="form-group mb-4 form-check">
+			{{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+			{{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'form-check-label'}}) }}
+		</div>
+
+		<button type="submit" class="btn btn-primary btn-block">Register</button>
+
+		{{ form_end(registrationForm) }}
+
+		<p class="text-center mt-3">
+			Already have an account?
+			<a href="{{ path('app_login') }}">Login</a>
+		</p>
+
+	</div>
+{% endblock %}

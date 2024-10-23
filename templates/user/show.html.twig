@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User -
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<h1>User</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ user.id }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ user.email }}</td>
+			</tr>
+			<tr>
+				<th>Roles</th>
+				<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+			</tr>
+			<tr>
+				<th>IsVerified</th>
+				<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('user_index') }}" class="btn btn-info btn-sm">back to list</a>
+
+	<a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-primary btn-sm">edit</a>
+
+	{{ include('user/_delete_form.html.twig') }}
+{% endblock %}

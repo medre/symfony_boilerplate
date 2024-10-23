@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About -
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<main class="container my-4">
+		<div class="row">
+			<div class="col-lg-12">
+				<article class="bg-white p-3 rounded shadow-sm">
+					<h1 class="mb-4">About</h1>
+
+					<p>
+						This project is a
+						<a href="https://symfony.com/doc/7.1/index.html">Symfony 7.1</a>
+						and
+						<a href="https://getbootstrap.com/docs/5.3/customize/overview/">Bootstrap 5.3</a>
+						boilerplate application that integrates several essential services and includes basic user authentication with login and register functionality setup with docker, nginx, and php-fpm. it includes configurations for various environments and services.
+					</p>
+
+					<h5>Services Used</h5>
+					<ul>
+						<li>PHP-FPM: Handles PHP processing.</li>
+						<li>Nginx: Serves as the web server.</li>
+						<li>Database: PostgreSQL & MySQL (optional) database service.</li>
+						<li>Redis: Redis service to keep sessions</li>
+						<li>RabbitMQ: Advanced Message Queuing Protocol (AMQP) and supports other messaging protocols as well.</li>
+						<li>Mailpit: Mailpit mailer for email service during development.</li>
+						<li>Adminer: Basic database admin panel.</li>
+					</ul>
+				</article>
+			</div>
+		</div>
+	</main>
+{% endblock %}

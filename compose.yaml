@@ -1,25 +1,100 @@
-
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-16}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    healthcheck:
-      test: ["CMD", "pg_isready", "-d", "${POSTGRES_DB:-app}", "-U", "${POSTGRES_USER:-app}"]
-      timeout: 5s
-      retries: 5
-      start_period: 60s
-    volumes:
-      - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+    ########################################
+    # Symfony PHP Application
+    ########################################
+    app:
+        build:
+            context: ./docker/php
+        ports:
+            - "9000:9000"
+        volumes:
+            - ./:/var/www/html
+        depends_on:
+            - database
+            - rabbitmq
+            - redis
+        networks:
+            - app-network
+
+    ########################################
+    # Nginx Server
+    ########################################
+    web:
+        image: nginx:alpine
+        ports:
+            - "80:80"
+        volumes:
+            - ./:/var/www/html
+            - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+        depends_on:
+            - app
+        networks:
+            - app-network
+
+    ########################################
+    # PostgreSQL Database
+    ########################################
+    database:
+        image: postgres:16-alpine
+        environment:
+            POSTGRES_DB: app
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: passwd
+        volumes:
+            - database_data:/var/lib/postgresql/data
+        networks:
+            - app-network
+
+    ########################################
+    # MySQL Database
+    ########################################
+    # database:
+    #   image: mysql:8
+    #   command: --default-authentication-plugin=mysql_native_password
+    #   environment:
+    #     MYSQL_ROOT_PASSWORD: root
+    #     MYSQL_DATABASE: app
+    #     MYSQL_USER: user
+    #     MYSQL_PASSWORD: passwd
+    #   volumes:
+    #     - database_data:/var/lib/mysql
+    #   networks:
+    #     - app-network
+
+    ########################################
+    # RabbitMQ
+    ########################################
+    rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+            - "15672:15672" # RabbitMQ Management UI
+            - "5672:5672" # RabbitMQ Port
+        networks:
+            - app-network
+
+    ########################################
+    # Redis
+    ########################################
+    redis:
+        image: redis:alpine
+        ports:
+            - "6379:6379"
+        networks:
+            - app-network
+
+    ########################################
+    # Database admin tool
+    ########################################
+    adminer:
+        image: adminer
+        ports:
+            - "8080:8080"
+        networks:
+            - app-network
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
+    database_data:
+
+networks:
+    app-network:
+        driver: bridge

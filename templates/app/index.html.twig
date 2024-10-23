@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to Symfony
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<main class="container my-4">
+		<div class="row">
+			<div class="col-lg-8">
+				<article class="bg-white p-3 rounded shadow-sm">
+					<h1 class="mb-4">Welcome to your Symfony Application</h1>
+
+					<p>This is a sample page with small padding on the main content,
+																																										                    using
+						<a href="https://getbootstrap.com/docs/5.3/customize/overview/" target="_blank">Bootstrap 5</a>. The design is light-colored and
+																																																	                    smooth.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+																																										                    aliquip ex ea commodo consequat.</p>
+					<a href="{{ path('page_about') }}" class="btn btn-primary mt-3">
+						Learn More</a>
+				</article>
+			</div>
+			<div class="col-lg-4">
+				<aside class="bg-white p-3 rounded shadow-sm">
+					<h2 class="h5 mb-3">Side Content</h2>
+					<p>This application has cool services.</p>
+					<ul class="list-unstyled">
+						<li>
+							<a href="https://nginx.org" class="text-decoration-none">
+								Nginx</a>
+						</li>
+						<li>
+							<a href="https://www.postgresql.org/" class="text-decoration-none">PostreSQL</a>
+						</li>
+						<li>
+							<a href="https://www.mysql.com/" class="text-decoration-none">MySQL</a>
+						</li>
+						<li>
+							<a href="https://redis.io/" class="text-decoration-none">
+								Redis</a>
+						</li>
+						<li>
+							<a href="https://www.rabbitmq.com/" class="text-decoration-none">RammitMQ</a>
+						</li>
+						<li>
+							<a href="https://www.adminer.org/" class="text-decoration-none">Adminer</a>
+						</li>
+						<li>
+							<a href="https://mailpit.axllent.org/" class="text-decoration-none">Mailpit Mailer</a>
+						</li>
+					</ul>
+				</aside>
+			</div>
+		</div>
+	</main>
+{% endblock %}

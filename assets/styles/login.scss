@@ -1,0 +1,103 @@
+// Variables
+$primary-color: #4a90e2;
+$background-color: #f0f2f5;
+$text-color: #333;
+$input-border-color: #ddd;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin input-styles {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid $input-border-color;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+// Styles
+body {
+  font-family: Arial, sans-serif;
+  background-color: $background-color;
+  margin: 0;
+  padding: 0;
+  @include flex-center;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    color: $text-color;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+
+  input[type="text"] {
+    @include input-styles;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+}
+
+.login-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 1rem;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
