@@ -6,7 +6,7 @@
     "editor.minimap.enabled": true,
     "editor.smoothScrolling": true,
     "editor.cursorBlinking": "smooth",
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorStyle": "line",
     "editor.cursorWidth": 2,
     "editor.fontFamily": "Fira Code, Menlo, Monaco, 'Courier New', monospace",
@@ -25,7 +25,7 @@
         "**/node_modules": true
     },
     "explorer.confirmDelete": false,
-    "php.suggest.basic": true, // Disable built-in PHP suggestions
+    "php.suggest.basic": false, // Disable built-in PHP suggestions
     "intelephense.environment.phpVersion": "8.2.0", // Set the PHP version (adjust based on your version)
     "intelephense.files.maxSize": 1000000, // Increase file size limit for larger files
     "intelephense.diagnostics.enable": true,
