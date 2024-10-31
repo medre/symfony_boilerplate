@@ -23,5 +23,17 @@ services:
             - "../src/Entity/"
             - "../src/Kernel.php"
 
+    #
+    # Configure entity listeners
+    #
+    App\EventListener\EntityListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: postRemove }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
