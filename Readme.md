@@ -1,6 +1,6 @@
 # Symfony Boilerplate
 
-This project is a [**Symfony 7.1**](https://symfony.com/doc/7.1/index.html) and
+This project is a [**Symfony 7.2**](https://symfony.com/doc/7.1/index.html) and
 [**Bootstrap 5.3**](https://getbootstrap.com/docs/5.3/customize/overview/)
 boilerplate application that integrates several essential services and includes
 basic user authentication with login and register functionality setup with
